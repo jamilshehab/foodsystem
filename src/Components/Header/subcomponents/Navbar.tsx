@@ -12,7 +12,13 @@ const Navbar = () => {
     // console.log(!isOpen);
   };
   return (
-    <nav className="bg-slate-100 py-4 border-gray-200 shadow-2xl ">
+    <nav
+      className=" py-4 border-gray-200 shadow-2xl "
+      style={{
+        backgroundColor: "#d9d9d9",
+        boxShadow: "0rem 0rem 0rem 0.05rem #666666",
+      }}
+    >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto  py-4">
         <Link
           to="#"
