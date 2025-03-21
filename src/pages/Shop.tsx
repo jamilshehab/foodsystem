@@ -1,7 +1,14 @@
 import React from "react";
+import ShopBanner from "../Components/Shop/ShopBanner";
+import ProductCategoriesComponent from "../Components/Home/ProductSection/HomeProducts/CategoryProducts/ProductCategoriesComponent";
 
 const Shop = () => {
-  return <div></div>;
+  return (
+    <main>
+      <ShopBanner />
+      <ProductCategoriesComponent />
+    </main>
+  );
 };
 
 export default Shop;

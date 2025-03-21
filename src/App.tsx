@@ -5,6 +5,9 @@ import About from "./pages/About";
 import Shop from "./pages/Shop";
 import Contact from "./pages/Contact";
 import Footer from "./Components/Footer/Footer";
+import ProductListing from "./Components/Shop/ProductListing/ProductListing";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/shop/productlisting" element={<ProductListing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
     </div>

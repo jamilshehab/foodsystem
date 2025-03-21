@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="container mx-auto flex flex-col">
           <div className="my-20 flex w-full flex-col items-center">
             <div className="mb-10 shrink-0">
-              <img className="h-9" src="../../img/logos/logo-nav-0.png" />
+              <img className="w-40" src="/logo/1.webp" />
             </div>
             <div className="mb-6 flex flex-col items-center gap-6">
               <div className="flex flex-wrap items-center justify-center gap-5 gap-y-3 lg:flex-nowrap lg:gap-12">
