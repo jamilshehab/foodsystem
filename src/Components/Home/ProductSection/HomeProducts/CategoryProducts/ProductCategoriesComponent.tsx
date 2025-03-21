@@ -1,9 +1,13 @@
 import { FaEye } from "react-icons/fa";
 import { productCategoryData } from "../../../../../data/data";
-
+import { motion } from "framer-motion";
 const ProductCategoriesComponent = () => {
   return (
-    <div className="flex flex-wrap justify-center items-center gap-3">
+    <motion.div
+      initial={{ opacity: 0, y: "-100%" }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+      className="flex flex-wrap justify-center items-center gap-3 my-6"
+    >
       {productCategoryData.map((item: any) => (
         <div className="w-full md:w-1/2 lg:w-1/5 mb-4 " key={item.id}>
           <div className="w-72 h-fit group border-2 border-slate-100 bg-white shadow-2xl rounded-2xl">
@@ -25,7 +29,7 @@ const ProductCategoriesComponent = () => {
           </div>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

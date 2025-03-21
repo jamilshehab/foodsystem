@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
 import { Link } from "react-router";
 import { navbarData } from "../../../data/data";
-
+import { motion } from "framer-motion";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -11,14 +11,17 @@ const Navbar = () => {
     setIsOpen(!isOpen);
     // console.log(!isOpen);
   };
+
   return (
-    <nav
-      className=" py-4 border-gray-200 shadow-2xl  "
+    <motion.nav
+      initial={{ opacity: 0, y: "-100%" }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+      className="py-4 border-gray-200 shadow-2xl"
       style={{
         boxShadow: "0rem 0rem 0rem 0.05rem #666666",
       }}
     >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto  py-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto  py-4 ">
         <Link
           to="#"
           className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -56,7 +59,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

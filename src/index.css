@@ -5,3 +5,10 @@
   margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 4px);
   background: #ffbd2f;
 }
+.nav-scroll {
+  /* transform: translateY(50%); */
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: aliceblue;
+}

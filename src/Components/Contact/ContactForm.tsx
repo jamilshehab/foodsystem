@@ -1,8 +1,12 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 const ContactForm = () => {
   return (
-    <div className="container relative mx-auto  max-w-xl">
+    <motion.div
+      initial={{ opacity: 0, y: "-100%" }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+      className="container relative mx-auto  max-w-xl"
+    >
       <form className="max-w-xl ">
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -60,7 +64,7 @@ const ContactForm = () => {
           Send
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

@@ -4,27 +4,40 @@ import {
   IoFastFoodOutline,
   IoRestaurantOutline,
 } from "react-icons/io5";
-
+import { motion } from "framer-motion";
 const AboutGrid = () => {
   return (
     <section className="py-15 bg-slate-50  ">
       <div className="container relative mx-auto  max-w-6xl">
-        <div className="flex justify-center items-center py-5">
+        <motion.div
+          initial={{ opacity: 0, y: "-100%" }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+          exit={{ opacity: 0, x: "100%" }}
+          className="flex justify-center items-center py-5"
+        >
           <div className="text-title">
             <h1 className="uppercase text-6xl text-slate-900">
               Get your food fast & Easy
             </h1>
           </div>
-        </div>
-        <div className="flex justify-center items-center py-5">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: "-100%" }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+          className="flex justify-center items-center py-5"
+        >
           <div className="text-subtitle">
             <h5 className="text-slate-400 font-bold text-4xl">
               Follow the Steps
             </h5>
           </div>
-        </div>
+        </motion.div>
         <div className="flex flex-wrap justify-center items-center my-5">
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 ">
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 "
+          >
             <div className="card relative flex flex-col items-center text-center">
               <div className="icon flex justify-center items-center my-5">
                 <CiMap className="text-7xl" />
@@ -34,8 +47,12 @@ const AboutGrid = () => {
               </div>
               <h5 className="text-2xl text-slate-900">Choose Your Location</h5>
             </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 ">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 "
+          >
             <div className="card relative flex flex-col items-center text-center">
               <div className="icon flex justify-center items-center my-5">
                 <IoRestaurantOutline className="text-7xl" />
@@ -45,8 +62,12 @@ const AboutGrid = () => {
               </div>
               <h5 className="text-2xl text-slate-900">Choose Restaurant</h5>
             </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 ">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 "
+          >
             <div className="card relative flex flex-col items-center text-center">
               <div className="icon flex justify-center items-center my-5">
                 <IoFastFoodOutline className="text-7xl" />
@@ -56,8 +77,12 @@ const AboutGrid = () => {
               </div>
               <h5 className="text-2xl text-slate-900">Make Your Order</h5>
             </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 ">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 "
+          >
             <div className="card relative flex flex-col items-center text-center">
               <div className="icon flex justify-center items-center my-5">
                 <CiDeliveryTruck className="text-7xl" />
@@ -67,7 +92,7 @@ const AboutGrid = () => {
               </div>
               <h5 className="text-2xl text-slate-900">Food Is On The Way</h5>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

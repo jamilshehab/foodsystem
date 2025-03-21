@@ -1,10 +1,14 @@
 import React from "react";
 import { productData } from "../../../../data/data";
 import { FaShoppingBasket } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 const ProductComponent = () => {
   return (
-    <div className="flex flex-wrap justify-center items-center gap-3">
+    <motion.div
+      className="flex flex-wrap justify-center items-center gap-3"
+      initial={{ opacity: 0, y: "-100%" }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
+    >
       {productData.map((item: any) => (
         <div className="w-full md:w-1/2 lg:w-1/5 mb-4 " key={item.id}>
           <div className="w-72 h-fit group border-2 border-slate-100 bg-white shadow-2xl rounded-2xl">
@@ -31,20 +35,20 @@ const ProductComponent = () => {
                 {item.category}
               </a>
             </div>
-            <p className="text-slate-500 text-center">{item.description}</p>
+            {/* <p className="text-slate-500 text-center">{item.description}</p> */}
             <p className="text-xl mt-2 ml-1 text-center">{item.price} $</p>
             <div className="flex justify-center gap-4 my-4">
-              <button className="bg-amber-300  py-2 px-6 rounded-2xl ">
+              <button className="bg-amber-300  py-2 px-6 rounded-2xl cursor-pointer">
                 Quick View
               </button>
-              <button className="bg-amber-300 py-2 px-6 rounded-2xl">
-                View More
+              <button className="bg-amber-300 py-2 px-6 rounded-2xl cursor-pointer">
+                Order Now
               </button>
             </div>
           </div>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

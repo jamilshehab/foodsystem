@@ -12,9 +12,7 @@ const ShopBanner = () => {
       <div className="flex flex-col justify-center items-center h-full space-y-4">
         {/* About Us */}
         <div className="z-10">
-          <h1 className="text-5xl text-white text-center font-bold ">
-            Contact Us
-          </h1>
+          <h1 className="text-5xl text-white text-center font-bold ">Shop</h1>
         </div>
 
         {/* Breadcrumb Links */}

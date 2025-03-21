@@ -19,6 +19,7 @@ import { BiMinus, BiPlus } from "react-icons/bi";
 import { CgChevronDoubleDown } from "react-icons/cg";
 import { MdArrowDownward } from "react-icons/md";
 import ProductContent from "../Components/Home/ProductSection/HomeProducts/ProductContent";
+import { Link } from "react-router";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -223,8 +224,8 @@ export default function Example() {
                   <div className="py-1">
                     {sortOptions.map((option) => (
                       <MenuItem key={option.name}>
-                        <a
-                          href={option.href}
+                        <Link
+                          to={option.href}
                           className={classNames(
                             option.current
                               ? "font-medium text-gray-900"
@@ -233,7 +234,7 @@ export default function Example() {
                           )}
                         >
                           {option.name}
-                        </a>
+                        </Link>
                       </MenuItem>
                     ))}
                   </div>

@@ -2,7 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Pagination, Autoplay } from "swiper/modules";
 import { productHomeSliderData } from "../../../data/data";
-
+import { Link } from "react-router";
+import { motion } from "framer-motion";
 // Import Swiper styles
 const FoodBanner = () => {
   return (
@@ -15,7 +16,7 @@ const FoodBanner = () => {
           clickable: true,
         }}
         autoplay={{
-          delay: 1800,
+          delay: 2000,
           disableOnInteraction: false,
         }}
         onSlideChange={() => console.log("slide change")}
@@ -33,18 +34,26 @@ const FoodBanner = () => {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
               </div>
 
-              <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
+              <motion.div
+                initial={{ opacity: 0, y: "-100%" }}
+                animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+                whileHover={{
+                  scale: 1.1,
+                  transition: { duration: 0.2 },
+                }}
+                className="relative z-10 flex flex-col justify-center items-center h-full text-center"
+              >
                 <h1 className="text-5xl font-bold leading-tight mb-4">
                   {item.title}
                 </h1>
                 <p className="text-lg text-gray-300 mb-8">{item.description}</p>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="bg-yellow-400 text-white hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
                 >
                   Get Started
-                </a>
-              </div>
+                </Link>
+              </motion.div>
             </div>
           </SwiperSlide>
         ))}
