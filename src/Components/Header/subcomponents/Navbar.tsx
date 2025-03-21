@@ -6,20 +6,31 @@ import { navbarData } from "../../../data/data";
 import { motion } from "framer-motion";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isScroll, setScroll] = useState<any>(false);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
     // console.log(!isOpen);
   };
 
+  const handleScroll = () => {
+    if (isScroll > 150) {
+      console.log(setScroll(true));
+    } else {
+      setScroll(false);
+    }
+  };
   return (
     <motion.nav
       initial={{ opacity: 0, y: "-100%" }}
       animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
-      className="py-4 border-gray-200 shadow-2xl"
+      className={`${
+        isOpen ? "fixed top-0 " : " py-4 border-gray-200 shadow-2xl"
+      }`}
       style={{
         boxShadow: "0rem 0rem 0rem 0.05rem #666666",
       }}
+      onChange={handleScroll}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto  py-4 ">
         <Link

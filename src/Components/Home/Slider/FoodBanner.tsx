@@ -19,7 +19,6 @@ const FoodBanner = () => {
           delay: 2000,
           disableOnInteraction: false,
         }}
-        onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
         {productHomeSliderData.map((item: any) => (
