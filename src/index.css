@@ -12,3 +12,9 @@
   z-index: 10;
   background-color: aliceblue;
 }
+.bg-primary {
+  background-color: #ffbd2f;
+}
+.bg-primary-400 {
+  background-color: #ac8021;
+}
