@@ -1,6 +1,7 @@
 import { FaEye } from "react-icons/fa";
 import { productCategoryData } from "../../../../../data/data";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 const ProductCategoriesComponent = () => {
   return (
     <motion.div
@@ -18,9 +19,12 @@ const ProductCategoriesComponent = () => {
                 alt=""
               />
               <div className="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-2xl">
-                <button className="bg-amber-300 rounded-full text-white py-4 px-4 z-10 cursor-pointer">
+                <Link
+                  to="/shop/product"
+                  className="bg-amber-300 rounded-full text-white py-4 px-4 z-10 cursor-pointer"
+                >
                   <FaEye className="text-2xl" />
-                </button>
+                </Link>
               </div>
             </div>
             <h2 className="mt-3 text-xl capitalize text-center py-2">

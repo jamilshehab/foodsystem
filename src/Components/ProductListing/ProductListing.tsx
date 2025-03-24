@@ -16,8 +16,8 @@ import { PiPlus } from "react-icons/pi";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { CgChevronDoubleDown } from "react-icons/cg";
 import { MdArrowDownward } from "react-icons/md";
-import ProductContent from "../Components/Home/ProductSection/HomeProducts/ProductContent";
 import { Link } from "react-router";
+import ProductContent from "../Home/ProductSection/HomeProducts/ProductContent";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
