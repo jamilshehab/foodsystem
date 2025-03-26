@@ -62,7 +62,7 @@ const Navbar = () => {
           <Link to="/login" className="text-slate-500 hover:text-black">
             Login
           </Link>
-          <Link to="/login" className="text-slate-500 hover:text-black">
+          <Link to="/register" className="text-slate-500 hover:text-black">
             Register
           </Link>
         </div>
