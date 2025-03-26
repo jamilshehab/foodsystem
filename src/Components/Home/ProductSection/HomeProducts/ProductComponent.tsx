@@ -3,7 +3,6 @@ import { productData } from "../../../../data/data";
 import { FaShoppingBasket } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
-import CustomModal from "../CustomModal";
 import Modal from "react-modal";
 import { FaCartShopping } from "react-icons/fa6";
 const ProductComponent = () => {
@@ -20,7 +19,7 @@ const ProductComponent = () => {
           initial={{ opacity: 0, y: "-100%" }}
           animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
         >
-          {productData.map((item: any) => (
+          {productData.slice(0, 4).map((item: any) => (
             <div className="w-full md:w-1/2 lg:w-1/5 mb-4 " key={item.id}>
               <div className="w-72 h-fit group border-2 border-slate-100 bg-white shadow-2xl rounded-2xl">
                 <div className="relative overflow-hidden">
@@ -50,12 +49,12 @@ const ProductComponent = () => {
                 <p className="text-xl mt-2 ml-1 text-center">{item.price} $</p>
                 <div className="flex justify-center gap-4 my-4">
                   <button
-                    className="bg-amber-300  py-2 px-6 rounded-2xl cursor-pointer"
+                    className="bg-primary text-white py-2 px-6 rounded-2xl cursor-pointer"
                     onClick={() => handleShow(item.id)}
                   >
                     Quick View
                   </button>
-                  <button className="bg-amber-300 py-2 px-6 rounded-2xl cursor-pointer">
+                  <button className="bg-primary text-white py-2 px-6 rounded-2xl cursor-pointer">
                     Order Now
                   </button>
                 </div>
@@ -141,7 +140,7 @@ const ProductComponent = () => {
                         role="button"
                       >
                         <FaCartShopping className="me-3" />
-                        Add to cart
+                        Order Now
                       </Link>
                     </div>
                   </div>

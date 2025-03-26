@@ -1,4 +1,3 @@
-import React from "react";
 import ShopBanner from "../Components/Shop/ShopBanner";
 import ProductCategoriesComponent from "../Components/Home/ProductSection/HomeProducts/CategoryProducts/ProductCategoriesComponent";
 

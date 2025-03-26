@@ -77,6 +77,39 @@ export const productData = [
     image: "/categories/1.jpg",
     price: "12",
   },
+  {
+    id: 4,
+    category: "Chicken Fries",
+    title: "Chicken Fries",
+    description: "chicken,potato sauce,salad,mayonase,ketchup ",
+    image: "/products/5.jpg",
+    price: " 12",
+  },
+  {
+    id: 5,
+    category: "Maacaroni",
+    title: "Three Meat Lasangia",
+    description:
+      "With special garlic cream sauce, ricotta cheese and tomatoes.",
+    image: "/products/2.jpg",
+    price: " 12",
+  },
+  {
+    id: 6,
+    category: "Maacaroni",
+    title: "Spinach Ricotta Ravioli",
+    description: "With spinach, basil, garlic and ricotta cheese",
+    image: "/products/3.jpg",
+    price: " 12",
+  },
+  {
+    id: 7,
+    category: "Chicken Burger",
+    title: "Chicken Burger",
+    description: "tomatoes, lettus, chicken, mayonase, ketchup.",
+    image: "/products/6.jpg",
+    price: "12",
+  },
 ];
 
 export const productCategoryData = [
@@ -88,7 +121,7 @@ export const productCategoryData = [
   {
     id: 1,
     title: "Maacaroni",
-    image: "/categories/2.jpg",
+    image: "/categories/5.jpg",
   },
   {
     id: 2,
@@ -140,4 +173,29 @@ export const footerData = [
     name: "Contact",
     link: "/contact",
   },
+];
+
+export const tableData = [
+  {
+    id: 0,
+    name: "",
+    description: "",
+    price: "",
+    image: "",
+  },
+  {
+    id: 1,
+    name: "",
+    description: "",
+    price: "",
+    image: "",
+  },
+  {
+    id: 2,
+    name: "",
+    description: "",
+    price: "",
+    image: "",
+  },
+  { id: 3, name: "", description: "", category: "", price: "", image: "" },
 ];

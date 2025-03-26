@@ -1,10 +1,11 @@
-import React from "react";
-import ShopBanner from "../Components/Shop/ShopBanner";
+import ProductBanner from "../Components/ProductListing/ProductBanner";
+import ProductListingComponent from "../Components/ProductListing/ProductListing";
 
 const Product = () => {
   return (
     <div>
-      <ShopBanner />
+      <ProductBanner />
+      <ProductListingComponent />
     </div>
   );
 };

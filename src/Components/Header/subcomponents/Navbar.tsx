@@ -4,64 +4,51 @@ import { TfiClose } from "react-icons/tfi";
 import { Link } from "react-router";
 import { navbarData } from "../../../data/data";
 import { motion } from "framer-motion";
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isScroll, setScroll] = useState<any>(false);
 
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScroll, setScroll] = useState(false);
+
+  // Toggle mobile menu
   const handleClick = () => {
     setIsOpen(!isOpen);
-    // console.log(!isOpen);
   };
 
-  const handleScroll = () => {
-    if (isScroll > 150) {
-      console.log(setScroll(true));
-    } else {
-      setScroll(false);
-    }
-  };
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 150) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <motion.nav
-      initial={{ opacity: 0, y: "-100%" }}
+      initial={{ opacity: 0, y: 0 }}
       animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
-      className={`${
-        isOpen ? "fixed top-0 " : " py-4 border-gray-200 shadow-2xl"
+      className={`fixed top-12 left-0 w-full z-50 bg-white shadow-md  duration-300 ${
+        isScroll ? "  !top-0 !duration-500 ease-in " : "translate-y-0"
       }`}
-      style={{
-        boxShadow: "0rem 0rem 0rem 0.05rem #666666",
-      }}
-      onChange={handleScroll}
     >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto  py-4 ">
-        <Link
-          to="#"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img src="/logo/1.webp" className="w-40" alt="Flowbite Logo" />
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between py-4 px-6">
+        {/* Logo */}
+        <Link to="#" className="flex items-center">
+          <img src="/logo/1.webp" className="w-40" alt="Logo" />
         </Link>
-        <button
-          onClick={handleClick}
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        >
-          {isOpen ? (
-            <TfiClose className="w-5 h-5" />
-          ) : (
-            <CiMenuBurger className="w-5 h-5" />
-          )}
-        </button>
-        <div
-          className={`  w-full md:block md:w-auto ${
-            isOpen ? "w-full block" : "hidden"
-          }`}
-          id="navbarOpen"
-        >
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg   md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  ">
-            {navbarData.map((item: any) => (
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex flex-1 justify-center">
+          <ul className="flex space-x-8 font-medium">
+            {navbarData.map((item) => (
               <li key={item.id}>
                 <Link
                   to={item.link}
-                  className="block py-2 px-3 text-slate-500  rounded-sm md:bg-transparent  md:p-0 "
+                  className="text-slate-500 hover:text-black transition"
                 >
                   {item.name}
                 </Link>
@@ -69,6 +56,53 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
+
+        {/* Login / Register */}
+        <div className="hidden md:flex space-x-4">
+          <Link to="/login" className="text-slate-500 hover:text-black">
+            Login
+          </Link>
+          <Link to="/login" className="text-slate-500 hover:text-black">
+            Register
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={handleClick}
+          className="md:hidden text-gray-500 p-2 rounded-lg"
+        >
+          {isOpen ? (
+            <TfiClose className="w-6 h-6" />
+          ) : (
+            <CiMenuBurger className="w-6 h-6" />
+          )}
+        </button>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="absolute top-full left-0 w-full bg-white shadow-lg md:hidden">
+            <ul className="flex flex-col space-y-2 p-4">
+              {navbarData.map((item) => (
+                <li key={item.id}>
+                  <Link to={item.link} className="block text-slate-500 py-2">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/login" className="block text-slate-500 py-2">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" className="block text-slate-500 py-2">
+                  Register
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </motion.nav>
   );
