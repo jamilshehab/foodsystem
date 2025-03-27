@@ -1,12 +1,16 @@
+import Footer from "../Components/Footer/Footer";
+import Header from "../Components/Header/subcomponents/Header";
 import ProductBanner from "../Components/ProductListing/ProductBanner";
 import ProductListingComponent from "../Components/ProductListing/ProductListing";
 
 const Product = () => {
   return (
-    <div>
+    <main>
+      <Header />
       <ProductBanner />
       <ProductListingComponent />
-    </div>
+      <Footer />
+    </main>
   );
 };
 

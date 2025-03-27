@@ -14,7 +14,6 @@ import Product from "./pages/Product";
 function App() {
   return (
     <div className=" ">
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -26,7 +25,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      <Footer />
     </div>
   );
 }
