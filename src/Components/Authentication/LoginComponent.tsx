@@ -60,6 +60,8 @@ const LoginComponent = () => {
                 >
                   Forgot password?
                 </Link>
+              </div>
+              <div>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
                   <Link
