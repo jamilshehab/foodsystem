@@ -10,7 +10,7 @@ const Checkout = () => {
       <Breadcrumb
         title="Checkout"
         firstTitle="Home"
-        firstLink="home"
+        firstLink="/"
         secondTitle="Checkout"
         secondLink="checkout"
       />

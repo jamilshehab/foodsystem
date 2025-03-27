@@ -31,7 +31,7 @@ const Breadcrumb: React.FC<BreadCrumbProps> = ({
           <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li className="inline-flex items-center">
               <Link
-                to={`/${firstLink}`}
+                to={firstLink}
                 className="text-2xl z-10 font-medium text-white hover:text-amber-600"
               >
                 {firstTitle}
