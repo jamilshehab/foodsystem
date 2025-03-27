@@ -1,3 +1,4 @@
+import Breadcrumb from "../Components/CustomComponent/Breadcrumb";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/subcomponents/Header";
 import ProductBanner from "../Components/ProductListing/ProductBanner";
@@ -7,7 +8,15 @@ const Product = () => {
   return (
     <main>
       <Header />
-      <ProductBanner />
+      <Breadcrumb
+        title="Products"
+        firstLink="/"
+        firstTitle="Home"
+        secondLink="shop"
+        secondTitle="Shop"
+        thirdLink="products"
+        thirdTitle="Products"
+      />
       <ProductListingComponent />
       <Footer />
     </main>
