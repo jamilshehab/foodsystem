@@ -11,7 +11,7 @@ const Shop = () => {
         title="Shop"
         firstLink="/"
         firstTitle="Home"
-        secondLink="/shop"
+        secondLink="shop"
         secondTitle="Shop"
       />
       <ProductCategoriesComponent />
