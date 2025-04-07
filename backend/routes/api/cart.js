@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const CartModel = require("../../models/Cart");
 console.log(CartModel);
-router.post("/api/add", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
     const product = req.body.products;
-    
+
     const cartDoc = await cart.save();
     res.status(200).json({
       success: true,
