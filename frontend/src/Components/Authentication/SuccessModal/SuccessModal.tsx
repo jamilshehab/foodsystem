@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import { RegisterModalProps } from "../../../types";
-
+import "./Success.css";
+import { FaRegCheckCircle } from "react-icons/fa";
 const RegisterModal = ({
   description,
   title,
@@ -19,7 +20,7 @@ const RegisterModal = ({
       <div className="page-wrapper">
         <div className="custom-modal">
           <div className="succes succes-animation icon-top">
-            <i className="fa fa-check"></i>
+            <FaRegCheckCircle className="flex items-center justify-center" />
           </div>
           <div className="succes border-bottom"></div>
           <div className="content">
