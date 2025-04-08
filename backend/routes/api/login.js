@@ -4,15 +4,12 @@ const router = express.Router();
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  UserModel.findone({ email: email }, (err, user) => {
-    if (user) {
-      if (password === user.password) {
-        res.send({ message: "login sucess", user: user });
-      } else {
-        res.send({ message: "wrong credentials" });
-      }
-    } else {
-      res.send("not register");
-    }
-  });
+  const userEmail = await UserModel.findOne({ email });
+  if (userEmail) {
+    res.send({ message: "login sucess" });
+  } else {
+    res.send({ message: "wrong credentials" });
+  }
 });
+
+module.exports = router;
