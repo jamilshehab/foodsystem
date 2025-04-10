@@ -9,8 +9,15 @@ router.post("/register", async (req, res) => {
       res.send({ message: "user already exists" });
     } else {
       const newUser = new UserModel({ firstName, lastName, email, password });
-      await newUser.save();
-      res.send({ message: "successful" });
+      const token = createSecretToken(user._id);
+      res.cookie("token", token, {
+        withCredentials: true,
+        httpOnly: false,
+      });
+      res
+        .status(201)
+        .json({ message: "User signed in successfully", success: true, user });
+      next();
     }
   } catch (error) {
     console.log(error.message);
