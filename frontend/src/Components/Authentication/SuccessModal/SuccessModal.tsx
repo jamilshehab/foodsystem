@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 import { RegisterModalProps } from "../../../types";
 import "./Success.css";
-import { FaRegCheckCircle } from "react-icons/fa";
+
 const RegisterModal = ({
   description,
   title,
@@ -9,25 +9,26 @@ const RegisterModal = ({
   onClose,
 }: RegisterModalProps) => {
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose}>
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 text-2xl font-bold text-gray-700 hover:text-gray-900 cursor-pointer"
-        aria-label="Close modal"
-      >
-        ✕
-      </button>
-      <div className="page-wrapper">
-        <div className="custom-modal">
-          <div className="succes succes-animation icon-top">
-            <FaRegCheckCircle className="flex items-center justify-center" />
-          </div>
-          <div className="succes border-bottom"></div>
-          <div className="content">
-            <p className="type">{title}</p>
-            <p className="message-type">{description}</p>
-          </div>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      className="modal fade"
+      overlayClassName="overlay"
+    >
+      <div id="success_tic" className="page-body">
+        <button className="close top-1 cursor-pointer" onClick={onClose}>
+          ✕
+        </button>
+        <div className="head">
+          <h3 className="my-4 text-center">{title}</h3>
+          <h4 className="text-center my-3">{description}</h4>
         </div>
+        <h1 className="text-center">
+          <div className="checkmark-circle my-6">
+            <div className="background"></div>
+            <div className="checkmark draw"></div>
+          </div>
+        </h1>
       </div>
     </Modal>
   );
