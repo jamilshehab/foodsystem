@@ -2,37 +2,71 @@ import axios from "axios";
 import React, { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import RegisterModal from "./SuccessModal/SuccessModal";
-
+import { ToastContainer, toast } from "react-toastify";
 const RegisterComponent = () => {
-  const [user, setUser] = useReducer(
-    (prev, next) => {
-      return { ...prev, ...next };
-    },
-    { firstName: "", lastName: "", email: "", password: "" }
-  );
-
-  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    axios
-      .post("/api/register", {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        password: user.password,
-      })
-      .then((result) => {
-        console.log(result);
-        setModal(true);
-      })
-      .catch((err) => console.log(err));
+  const [inputValue, setInputValue] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+  const [modal, setModal] = useState(false);
+
+  const { firstName, lastName, email, password } = inputValue;
+
+  const handleOnChange = (e: any) => {
+    const { name, value } = e.target;
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+    });
   };
 
+  const handleError = (err: any) =>
+    toast.error(err, {
+      position: "bottom-left",
+    });
+
+  const handleSuccess = (msg: any) =>
+    toast.success(msg, {
+      position: "bottom-left",
+    });
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        "/api/register",
+        {
+          ...inputValue,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
+      const { success, message } = data;
+      if (success) {
+        handleSuccess(message);
+        setModal(true);
+        // setTimeout(() => {
+        //   navigate("/");
+        // }, 1000);
+      } else {
+        handleError(message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setInputValue({
+      ...inputValue,
+      email: "",
+      password: "",
+    });
+  };
   const handleCloseModal = () => {
     setModal(false);
-    navigate("/login");
+    navigate("/");
   };
+
   return (
     <section className="bg-gray-50  ">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -55,8 +89,8 @@ const RegisterComponent = () => {
                   name="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter Your Name"
-                  value={user.firstName}
-                  onChange={(e) => setUser({ firstName: e.target.value })}
+                  value={firstName}
+                  onChange={handleOnChange}
                   required
                 />
               </div>
@@ -70,8 +104,8 @@ const RegisterComponent = () => {
                   id="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter Your Name"
-                  value={user.lastName}
-                  onChange={(e) => setUser({ lastName: e.target.value })}
+                  value={lastName}
+                  onChange={handleOnChange}
                   required
                 />
               </div>
@@ -85,8 +119,8 @@ const RegisterComponent = () => {
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="someone@gmail.com"
-                  value={user.email}
-                  onChange={(e) => setUser({ email: e.target.value })}
+                  value={email}
+                  onChange={handleOnChange}
                   required
                 />
               </div>
@@ -99,8 +133,8 @@ const RegisterComponent = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  value={user.password}
-                  onChange={(e) => setUser({ password: e.target.value })}
+                  value={password}
+                  onChange={handleOnChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
