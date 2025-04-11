@@ -1,25 +1,67 @@
 import React from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import RegisterModal from "./SuccessModal/SuccessModal";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+
 const LoginComponent = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
+  });
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
-  const handleSubmit = async (e: React.FormEvent) => {
+  const { email, password } = inputValue;
+
+  const handleOnChange = (e: any) => {
+    const { name, value } = e.target;
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+    });
+  };
+
+  const handleError = (err: any) =>
+    toast.error(err, {
+      position: "bottom-left",
+    });
+
+  const handleSuccess = (msg: any) =>
+    toast.success(msg, {
+      position: "bottom-right",
+    });
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    axios
-      .post("/api/login", {
-        email: email,
-        password: password,
-      })
-      .then((result) => {
-        console.log(result);
+    try {
+      const { data } = await axios.post(
+        "/api/login",
+        {
+          ...inputValue,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
+      const { success, message } = data;
+      if (success) {
+        handleSuccess(message);
         setModal(true);
-      })
-      .catch((err) => console.log(err));
+        // setTimeout(() => {
+        //   navigate("/");
+        // }, 1000);
+      } else {
+        handleError(message);
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+    setInputValue({
+      ...inputValue,
+      email: "",
+      password: "",
+    });
   };
 
   const handleCloseModal = () => {
@@ -47,7 +89,7 @@ const LoginComponent = () => {
                   type="email"
                   name="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleOnChange}
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
@@ -61,7 +103,7 @@ const LoginComponent = () => {
                 <input
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handleOnChange}
                   name="password"
                   id="password"
                   placeholder="••••••••"
@@ -88,6 +130,7 @@ const LoginComponent = () => {
                 Sign in
               </button>
             </form>
+            <ToastContainer />
           </div>
         </div>
       </div>
@@ -96,7 +139,7 @@ const LoginComponent = () => {
         <RegisterModal
           isOpen={modal}
           description="User Login Success"
-          title="User Success"
+          title="User Logged In Success"
           onClose={handleCloseModal}
         />
       )}

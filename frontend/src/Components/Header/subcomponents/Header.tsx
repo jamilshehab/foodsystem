@@ -2,11 +2,11 @@ import React from "react";
 import Topbar from "./Topbar";
 import Navbar from "./Navbar";
 
-const Header = () => {
+const Header = ({ user, logout }: any) => {
   return (
     <div className="">
       <Topbar />
-      <Navbar />
+      <Navbar user={user} logout={logout} />
     </div>
   );
 };

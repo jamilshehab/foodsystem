@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { navbarData } from "../../../data/data";
 import { motion } from "framer-motion";
 
-const Navbar = () => {
+const Navbar = ({ user, logout }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScroll, setScroll] = useState(false);
 
@@ -59,12 +59,12 @@ const Navbar = () => {
 
         {/* Login / Register */}
         <div className="hidden md:flex space-x-4">
-          <Link to="/login" className="text-slate-500 hover:text-black">
-            Login
+          <Link to="/" className="text-slate-500 hover:text-black">
+            {user}
           </Link>
-          <Link to="/register" className="text-slate-500 hover:text-black">
-            Register
-          </Link>
+          <button onClick={logout} className="text-slate-500 hover:text-black">
+            Logout
+          </button>
         </div>
 
         {/* Mobile Menu Button */}

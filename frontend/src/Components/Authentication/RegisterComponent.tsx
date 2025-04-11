@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useReducer, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import RegisterModal from "./SuccessModal/SuccessModal";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 const RegisterComponent = () => {
   const navigate = useNavigate();
@@ -22,7 +23,6 @@ const RegisterComponent = () => {
       [name]: value,
     });
   };
-
   const handleError = (err: any) =>
     toast.error(err, {
       position: "bottom-left",
@@ -86,7 +86,7 @@ const RegisterComponent = () => {
                 </label>
                 <input
                   type="text"
-                  name="name"
+                  name="firstName"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter Your Name"
                   value={firstName}
@@ -100,8 +100,7 @@ const RegisterComponent = () => {
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  id="name"
+                  name="lastName"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter Your Name"
                   value={lastName}
@@ -156,6 +155,7 @@ const RegisterComponent = () => {
                 Sign Up
               </button>
             </form>
+            <ToastContainer />
           </div>
         </div>
       </div>
