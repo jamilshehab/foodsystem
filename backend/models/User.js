@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
     default: new Date(),
   },
 });
-UserSchema.pre("save", async () => {
+UserSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, 12);
 });
 const UserModel = mongoose.model("User", UserSchema);
