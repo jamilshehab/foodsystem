@@ -19,8 +19,6 @@ const SignupController = async (req, res, next) => {
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
-      httpOnly: true,
-      secure: false,
     });
     res
       .status(201)
@@ -48,8 +46,6 @@ const SignInController = async (req, res, next) => {
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
-      httpOnly: true,
-      secure: false,
     });
     res
       .status(201)
