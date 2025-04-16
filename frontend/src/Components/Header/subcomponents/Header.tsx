@@ -1,12 +1,11 @@
-import React from "react";
-import Topbar from "./Topbar";
 import Navbar from "./Navbar";
+import Topbar from "./Topbar";
 
-const Header = ({ user, logout }: any) => {
+const Header = ({ userDisplay, userLogout }: any) => {
   return (
     <div className="">
       <Topbar />
-      <Navbar user={user} logout={logout} />
+      <Navbar userDisplay={userDisplay} userLogout={userLogout} />
     </div>
   );
 };

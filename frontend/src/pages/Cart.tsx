@@ -1,11 +1,13 @@
 import React from "react";
-import CartBanner from "../Components/Cart/CartBanner";
-import CartContent from "../Components/Cart/CartContent";
-import Breadcrumb from "../Components/CustomComponent/Breadcrumb";
+import CartBanner from "../components/Cart/CartBanner";
+import CartContent from "../components/Cart/CartContent";
+import Breadcrumb from "../components/CustomComponent/Breadcrumb";
+import Header from "../components/Header/subcomponents/Header";
 
-const Cart = () => {
+const Cart = ({ userDisplay, userLogout }: any) => {
   return (
     <main>
+      <Header userDisplay={userDisplay} userLogout={userLogout} />
       <Breadcrumb
         title="Cart"
         firstLink="/"

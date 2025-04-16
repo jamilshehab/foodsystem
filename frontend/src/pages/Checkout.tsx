@@ -1,12 +1,12 @@
-import CheckoutComponent from "../Components/Checkout/CheckoutComponent";
-import Breadcrumb from "../Components/CustomComponent/Breadcrumb";
-import Footer from "../Components/Footer/Footer";
-import Header from "../Components/Header/subcomponents/Header";
+import CheckoutComponent from "../components/Checkout/CheckoutComponent";
+import Breadcrumb from "../components/CustomComponent/Breadcrumb";
+import Footer from "../components/Footer/Footer";
+import Header from "../components/Header/subcomponents/Header";
 
-const Checkout = () => {
+const Checkout = ({ userDisplay, userLogout }: any) => {
   return (
     <main>
-      <Header />
+      <Header userDisplay={userDisplay} userLogout={userLogout} />
       <Breadcrumb
         title="Checkout"
         firstTitle="Home"

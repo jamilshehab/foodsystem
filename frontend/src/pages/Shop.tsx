@@ -1,12 +1,12 @@
-import ProductCategoriesComponent from "../Components/Home/ProductSection/HomeProducts/CategoryProducts/ProductCategoriesComponent";
-import Header from "../Components/Header/subcomponents/Header";
-import Footer from "../Components/Footer/Footer";
-import Breadcrumb from "../Components/CustomComponent/Breadcrumb";
+import Header from "../components/Header/subcomponents/Header";
+import Footer from "../components/Footer/Footer";
+import Breadcrumb from "../components/CustomComponent/Breadcrumb";
+import ProductListing from "../components/ProductListing/ProductListing";
 
-const Shop = () => {
+const Shop = ({ userDisplay, userLogout }: any) => {
   return (
     <main>
-      <Header />
+      <Header userDisplay={userDisplay} userLogout={userLogout} />
       <Breadcrumb
         title="Shop"
         firstLink="/"
@@ -14,7 +14,7 @@ const Shop = () => {
         secondLink="shop"
         secondTitle="Shop"
       />
-      <ProductCategoriesComponent />
+      <ProductListing />
       <Footer />
     </main>
   );

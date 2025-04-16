@@ -1,14 +1,14 @@
-import AboutGrid from "../Components/About/AboutGrid";
-import SectionBanner from "../Components/Home/SectionBanner/SectionBanner";
-import ProductContent from "../Components/Home/ProductSection/HomeProducts/ProductContent";
-import Breadcrumb from "../Components/CustomComponent/Breadcrumb";
-import Header from "../Components/Header/subcomponents/Header";
-import Footer from "../Components/Footer/Footer";
+import AboutGrid from "../components/About/AboutGrid";
+import SectionBanner from "../components/Home/SectionBanner/SectionBanner";
+import ProductContent from "../components/Home/ProductSection/HomeProducts/ProductContent";
+import Breadcrumb from "../components/CustomComponent/Breadcrumb";
+import Header from "../components/Header/subcomponents/Header";
+import Footer from "../components/Footer/Footer";
 
-const About = () => {
+const About = ({ userDisplay, userLogout }: any) => {
   return (
     <main>
-      <Header />
+      <Header userDisplay={userDisplay} userLogout={userLogout} />
       <Breadcrumb
         title="About Us"
         firstTitle="home"

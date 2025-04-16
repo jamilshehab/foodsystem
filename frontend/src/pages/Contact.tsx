@@ -1,22 +1,19 @@
-import React from "react";
-import ContactSection from "../Components/Contact/ContactSection";
-import ContactGrid from "../Components/Contact/ContactGrid";
-import ContactForm from "../Components/Contact/ContactForm";
-import Header from "../Components/Header/subcomponents/Header";
-import Footer from "../Components/Footer/Footer";
-import Breadcrumb from "../Components/CustomComponent/Breadcrumb";
+import ContactGrid from "../components/Contact/ContactGrid";
+import ContactForm from "../components/Contact/ContactForm";
+import Header from "../components/Header/subcomponents/Header";
+import Footer from "../components/Footer/Footer";
+import Breadcrumb from "../components/CustomComponent/Breadcrumb";
 
-const Contact = () => {
+const Contact = ({ userDisplay, userLogout }: any) => {
   return (
     <main className="">
-      <Header />
+      <Header userDisplay={userDisplay} userLogout={userLogout} />
       <Breadcrumb
         title="Contact Us"
         firstLink="/"
         firstTitle="Home"
         secondLink="contact"
         secondTitle="Contact"
-        
       />
       <ContactGrid />
       <ContactForm />

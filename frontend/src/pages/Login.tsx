@@ -1,6 +1,4 @@
-import React from "react";
-import { Link } from "react-router";
-import LoginComponent from "../Components/Authentication/LoginComponent";
+import LoginComponent from "../components/Authentication/LoginComponent";
 
 const Login = () => {
   return (

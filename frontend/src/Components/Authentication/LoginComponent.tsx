@@ -48,9 +48,6 @@ const LoginComponent = () => {
       if (success) {
         handleSuccess(message);
         setModal(true);
-        // setTimeout(() => {
-        //   navigate("/");
-        // }, 1000);
       } else {
         handleError(message);
       }
