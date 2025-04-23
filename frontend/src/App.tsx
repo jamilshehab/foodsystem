@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Shop from "./pages/Shop";
@@ -7,58 +7,81 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import { CookiesProvider, useCookies } from "react-cookie";
-import useAuth from "./hooks/cookieHook";
+import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies(["token"]);
-  const [userName, setUserName] = useState("");
-  const { Logout, verifyCookie } = useAuth({
-    navigate,
-    cookies,
-    removeCookie,
-    setUserName,
-  });
+  const [username, setUsername] = useState("");
+
   useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+        return; // Prevent further execution
+      }
+
+      try {
+        const { data } = await axios.post(
+          "/api/verify",
+          {},
+          { withCredentials: true }
+        );
+        if (data.status) {
+          setUsername(data.user);
+        } else {
+          removeCookie("token", { path: "/" });
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Verify error:", error);
+        removeCookie("token", { path: "/" });
+        navigate("/login");
+      }
+    };
+
     verifyCookie();
-  }, [cookies, navigate, removeCookie]);
+  }, [cookies.token, navigate, removeCookie]);
+  const Logout = () => {
+    removeCookie("token", { path: "/" });
+    // Reset the toast shown flag on logout
+    localStorage.removeItem("toastShown");
+    navigate("/login");
+  };
 
   return (
-    <CookiesProvider>
-      <div className="div">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home userDisplay={userName} userLogout={Logout} />}
-          />
-          <Route
-            path="/about"
-            element={<About userDisplay={userName} userLogout={Logout} />}
-          />
-          <Route
-            path="/shop"
-            element={<Shop userDisplay={userName} userLogout={Logout} />}
-          />
-          <Route
-            path="/contact"
-            element={<Contact userDisplay={userName} userLogout={Logout} />}
-          />
-
-          <Route
-            path="/cart"
-            element={<Cart userDisplay={userName} userLogout={Logout} />}
-          />
-          <Route
-            path="/checkout"
-            element={<Checkout userDisplay={userName} userLogout={Logout} />}
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </div>
-    </CookiesProvider>
+    <div>
+      <Routes>
+        <Route
+          path="/"
+          element={<Home userDisplay={username} userLogout={Logout} />}
+        />
+        <Route
+          path="/about"
+          element={<About userDisplay={username} userLogout={Logout} />}
+        />
+        <Route
+          path="/shop"
+          element={<Shop userDisplay={username} userLogout={Logout} />}
+        />
+        <Route
+          path="/contact"
+          element={<Contact userDisplay={username} userLogout={Logout} />}
+        />
+        <Route
+          path="/cart"
+          element={<Cart userDisplay={username} userLogout={Logout} />}
+        />
+        <Route
+          path="/checkout"
+          element={<Checkout userDisplay={username} userLogout={Logout} />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </div>
   );
 }
 

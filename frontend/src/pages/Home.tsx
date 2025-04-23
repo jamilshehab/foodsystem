@@ -14,8 +14,8 @@ const Home = ({ userDisplay, userLogout }: any) => {
       <AdvertisingContent />
       <SectionBanner />
       <ProductContent />
-      <Footer />
       <ToastContainer />
+      <Footer />
     </main>
   );
 };

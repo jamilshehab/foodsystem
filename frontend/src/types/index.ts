@@ -25,3 +25,12 @@ export interface RegisterModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+export interface ProductProps {
+  products: {
+    title: string;
+    description: string;
+    price: Number;
+    
+  };
+}

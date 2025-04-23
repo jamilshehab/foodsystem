@@ -24,7 +24,7 @@ const Topbar = () => {
             <ul className="flex items-center">
               <li className="">
                 <Link to="" className="text-slate-300">
-                  Login
+                  Call Us
                 </Link>
               </li>
             </ul>

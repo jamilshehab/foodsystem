@@ -2,16 +2,43 @@ import React, { useEffect, useState } from "react";
 import { FaShoppingBasket } from "react-icons/fa";
 import { motion } from "framer-motion";
 import ProductModal from "./ProductModal/ProductModal";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { data } from "react-router";
 
 const ProductListing = () => {
   const [selectedProduct, setSelectedProduct] = useState(false);
-
   const [product, setProduct] = useState([]);
+  const [cartItems, setCartItems] = useState([]); // State to store cart items
 
   const getData = async () => {
     const res = await fetch("/api/foods");
     const data = await res.json();
     setProduct(data.data);
+  };
+
+  const addProductToCart = async (product: any) => {
+    try {
+      const { data } = await axios.post(
+        "/api/addToCart",
+        {
+          productId: product._id,
+          quantity: 1,
+          price: product.price,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      // Update cart state with the new cart data from the response
+      setCartItems(data.data.items);
+
+      toast.success("Product added to cart!", { position: "top-right" });
+    } catch (err) {
+      console.error("❌ Error adding to cart:", err);
+      toast.error("Something went wrong", { position: "top-right" });
+    }
   };
 
   useEffect(() => {
@@ -44,7 +71,10 @@ const ProductListing = () => {
                     alt=""
                   />
                   <div className="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-2xl">
-                    <button className="bg-amber-300 rounded-full text-white py-4 px-4 z-10 cursor-pointer">
+                    <button
+                      className="bg-amber-300 rounded-full text-white py-4 px-4 z-10 cursor-pointer"
+                      onClick={() => addProductToCart(item)}
+                    >
                       <FaShoppingBasket className="text-2xl" />
                     </button>
                   </div>
@@ -60,8 +90,11 @@ const ProductListing = () => {
                   >
                     Quick View
                   </button>
-                  <button className="bg-primary text-white py-2 px-6 rounded-2xl cursor-pointer">
-                    Order Now
+                  <button
+                    className="bg-primary text-white py-2 px-6 rounded-2xl cursor-pointer"
+                    onClick={() => addProductToCart(item)}
+                  >
+                    Add To Cart
                   </button>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
 import { Link } from "react-router";
@@ -59,11 +59,15 @@ const Navbar = ({ userDisplay, userLogout }: any) => {
 
         {/* Login / Register */}
         <div className="hidden md:flex space-x-4">
-          <Link to="/" className="text-slate-500 hover:text-black"></Link>
+          <Link to="/" className="text-slate-500 hover:text-black">
+            {userDisplay}
+          </Link>
           <button
             className="text-slate-500 hover:text-black"
             onClick={userLogout}
-          ></button>
+          >
+            logout
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
