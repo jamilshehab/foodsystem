@@ -1,21 +1,9 @@
 const express = require("express");
+const { getCart, deleteCart, createCart } = require("../../controllers/CartController");
+const { userVerification } = require("../../middleware/AuthMiddleware");
 const router = express.Router();
-const CartModel = require("../../models/Cart");
-console.log(CartModel);
-router.post("/add", async (req, res) => {
-  try {
-    const product = req.body.products;
 
-    const cartDoc = await cart.save();
-    res.status(200).json({
-      success: true,
-      cartId: cartDoc.id,
-    });
-  } catch (error) {
-    res.status(400).json({
-      error: "Your request could not be processed. Please try again.",
-    });
-  }
-});
-
+router.get("/viewCart", userVerification, getCart);
+router.post("/deletecart", userVerification, deleteCart);
+router.post("/addToCart", userVerification, createCart);
 module.exports = router;

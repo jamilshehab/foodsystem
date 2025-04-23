@@ -55,4 +55,5 @@ const SignInController = async (req, res, next) => {
     console.error(error);
   }
 };
+
 module.exports = { SignupController, SignInController };
